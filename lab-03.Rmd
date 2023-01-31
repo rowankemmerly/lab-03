@@ -19,17 +19,26 @@ nobel <- read_csv("data/nobel.csv")
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here.
-Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
+#### How many observations and how many variables are in the dataset? Use inline code to answer this question. What does each row represent?
+
+```{r dataset-info}
+glimpse(nobel)
+```
+
+There are 26 columns and 26 corresponding variables, and each of the 935 rows represents an individual Nobel laureate.
 
 ### Exercise 2
 
-Remove this text, and add your answer for Exercise 1 here.
-Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
+Now I'm creating the data frame for only currently alive Nobel laureates. 
+
+```{r creating-nobel-living}
+nobel_living <- filter(nobel, !is.na(country), gender != "org", is.na(died_date))
+```
+
+```{r nobel-living-info}
+glimpse(nobel_living)
+```
+
 
 ### Exercise 3
 
