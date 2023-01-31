@@ -1,7 +1,7 @@
 Lab 03 - Nobel laureates
 ================
-Insert your name here
-Insert date here
+Rowan Kemmerly
+1.31.22
 
 ### Load packages and data
 
