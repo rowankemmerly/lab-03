@@ -155,6 +155,21 @@ nobel_living_science <- nobel_living_science %>%
   )
 ```
 
+``` r
+nobel_living_science %>%
+  filter(country_us == "USA") %>%
+  count(born_country == "USA")
+```
+
+    ## # A tibble: 2 × 2
+    ##   `born_country == "USA"`     n
+    ##   <lgl>                   <int>
+    ## 1 FALSE                      45
+    ## 2 TRUE                      102
+
+It looks like 102 of 147 Nobel laureates based in the US were born in
+the US. That’s a lot!
+
 ### Exercise 5
 
 (Okay I know this is not what this exercise is asking for but I
@@ -201,3 +216,32 @@ laureates based in the US were born in the US. (And the US sure does
 have a knack for producing economics laureates…)
 
 ### Exercise 6
+
+``` r
+nobel_living_science %>%
+  filter(country_us == "USA") %>%
+  filter(born_country != "USA") %>%
+  count(born_country) %>%
+  arrange(desc(n)) #since you are piping, you don't need to specify which variable you want things sorted by here (you're already specifying that in the above lines)
+```
+
+    ## # A tibble: 21 × 2
+    ##    born_country       n
+    ##    <chr>          <int>
+    ##  1 Germany            7
+    ##  2 United Kingdom     7
+    ##  3 China              5
+    ##  4 Canada             4
+    ##  5 Japan              3
+    ##  6 Australia          2
+    ##  7 Israel             2
+    ##  8 Norway             2
+    ##  9 Austria            1
+    ## 10 Finland            1
+    ## # … with 11 more rows
+
+This tibble shows that most Nobel laureates based in the US but born in
+other countries were born in Germany or the United Kingdom.
+
+P.S. It’s super cool to be able to look at Buzzfeed’s code at the end
+and know almost everything that’s going on in all that code!!
