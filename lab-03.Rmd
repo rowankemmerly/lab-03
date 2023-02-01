@@ -79,43 +79,55 @@ ggplot(data = nobel_living_science,
 
 This shows how more Nobel laureates are based in the US than other countries for every award area. We can't know yet based on this visualization alone whether these data support the Buzzfeed headline's claim that most/a large portion of these US winners were born in other countries.
 
+
 ### Exercise 4
 
-(Okay I know this is not what this exercise is asking for but I accidentally got the bullet-pointed instructions for Exercises 3 and 5 confused before and ended up making the plot below before completing the plot for Exercise 3....and thought the rainbows were very satisfying!!)
+The born_country_us variable will tell us whether a laureate was born in the US or another country:
 
-```{r nobel-bar-plot-rainbow}
-ggplot(data = nobel_living_science, 
-     mapping = aes(x = country_us, 
-    fill = born_country)) +
-   geom_bar(position="stack") +
-   facet_wrap(~ category) +
-  coord_flip() +
-   labs(title = "Nobel laureates in the US vs. other countries",
-       subtitle = "by award area",
-       x = "Country", y = "Number of Nobel lauerates",
-       fill = "Country")
-```
-
-Here is the actual plot for Exercise 4:
-
-```{r nobel-bar-plot-born-country}
-ggplot(data = nobel_living_science, 
-     mapping = aes(x = country_us, 
-    fill = born_country)) +
-   geom_bar(position="stack") +
-   facet_wrap(~ category) +
-  coord_flip() +
-   labs(title = "Nobel laureates in the US vs. other countries",
-       subtitle = "by award area",
-       x = "Country", y = "Number of Nobel lauerates",
-       fill = "Country")
+```{r born-in-us}
+nobel_living_science <- nobel_living_science %>%
+  mutate(
+    born_country_us = if_else(born_country == "USA", "USA", "Other")
+  )
 ```
 
 
 ### Exercise 5
 
-...
+(Okay I know this is not what this exercise is asking for but I accidentally got the bullet-pointed instructions for Exercises 3 and 5 confused before and ended up making the plot below before completing the plot for Exercise 3....and thought the rainbows were very satisfying!! [albeit difficult to interpret, for sure...])
+
+```{r nobel-bar-plot-rainbow}
+ggplot(data = nobel_living_science, 
+     mapping = aes(x = country_us, 
+    fill = born_country)) + #remember that fill corresponds with color of the whole bar and "color" is just the outline
+   geom_bar(position="stack") +
+   facet_wrap(~ category) +
+  coord_flip() +
+   labs(title = "Nobel laureates in the US vs. other countries",
+       subtitle = "by award area",
+       x = "Country", y = "Number of Nobel lauerates",
+       fill = "Country") 
+```
+
+Here is the actual plot for Exercise 5:
+
+```{r nobel-bar-plot-born-country}
+ggplot(data = nobel_living_science, 
+     mapping = aes(x = country_us, 
+    fill = born_country_us)) +
+   geom_bar(position="stack") +
+   facet_wrap(~ category) +
+  coord_flip() +
+   labs(title = "Nobel laureates in the US vs. other countries",
+       subtitle = "by award area",
+       x = "Country", y = "Number of Nobel lauerates",
+       fill = "Birth country of laureate")
+```
+
+With this plot, you can see that the claim in the title of the Buzzfeed article is indeed quite exaggerated. The large majority of Nobel laureates based in the US were born in the US. (And the US sure does have a knack for producing economics laureates...)
 
 ### Exercise 6
 
-...
+```{r laureate-birthplaces}
+
+```
